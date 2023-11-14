@@ -1,28 +1,33 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   return (
     <div className="p-4 flex justify-between items-center shadow-md">
-      <Link className="font-bold text-lg text-blue-700" href={"/"}>
-        GTCoding
-      </Link>
-      {status === "authenticated" ? (
+      {status === 'unauthenticated' ? <span className="font-bold text-lg text-blue-700" >
+        請先登入!!
+      </span> :
+        <span className="font-bold text-lg text-blue-700 flex " >
+          <Image
+            className="rounded-full"
+            src={session?.user?.image}
+            width={30}
+            height={30}
+          />
+          <span className="ml-4">
+            {session?.user?.email}
+          </span>
+        </span>
+      }
+      {status === "authenticated" && (
         <button
           onClick={() => signOut()}
           className="bg-slate-900 text-white px-6 py-2 rounded-md"
         >
-          Sign Out
-        </button>
-      ) : (
-        <button
-          onClick={() => signIn("google")}
-          className="bg-slate-900 text-white px-6 py-2 rounded-md"
-        >
-          Sign In
+          登出
         </button>
       )}
     </div>
