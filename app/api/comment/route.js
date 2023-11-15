@@ -13,3 +13,9 @@ export async function GET() {
     const comment = await Comment.find();
     return NextResponse.json({ comment });
 }
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectMongoDB();
+    await Comment.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Comment deleted" }, { status: 200 });
+}

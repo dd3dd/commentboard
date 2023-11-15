@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const { status, data: session } = useSession();

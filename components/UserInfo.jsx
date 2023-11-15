@@ -2,13 +2,18 @@
 
 import Image from "next/image";
 import SignInBtn from "./SignInBtn";
+import CommentList from "./CommentList";
 import { useSession } from "next-auth/react";
 
 export default function UserInfo() {
   const { status, data: session } = useSession();
 
-  if (status === 'unauthenticated')
-    return <SignInBtn />;
+  // if (status === 'unauthenticated')
+  //   return <SignInBtn />;
+  {
+    return status === 'unauthenticated' && <SignInBtn />
+
+  }
   // if (status === "authenticated") {
   //   return (
   //     <div className="shadow-xl p-8 rounded-md flex flex-col gap-3 bg-yellow-200">
