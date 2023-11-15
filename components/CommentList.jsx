@@ -1,6 +1,8 @@
 'use client';
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import Comment from "./Comment";
+import AddComment from "./AddComment";
 
 export default function ShowComment() {
     const { status, data: session } = useSession();
@@ -16,6 +18,7 @@ export default function ShowComment() {
                 throw new Error("Failed to fetch topics");
             }
             const { comment } = await res.json();
+            console.log(comment)
             setMyComment(comment);
 
         } catch (error) {
@@ -28,13 +31,11 @@ export default function ShowComment() {
         }
     }, [status])
     return (
-        <div className="mt-12">
+        <div className="mt-12 h-80">
             {status === 'authenticated' && myComment.map(e =>
-                <div className="flex justify-between items-center shadow-md">
-                    <img src={e.img} alt="profileImage" />
-                    {e.comment}
-                </div>
+                <Comment imgSrc={e.img} comment={e.comment} name={e.name} />
             )}
+            <AddComment />
         </div>
     )
 }

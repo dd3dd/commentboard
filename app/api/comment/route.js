@@ -3,9 +3,9 @@ import Comment from "@/models/comment";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { email, comment, img } = await request.json();
+    const { email, comment, img, name } = await request.json();
     await connectMongoDB();
-    await Comment.create({ email, comment, img });
+    await Comment.create({ email, comment, img, name });
     return NextResponse.json({ message: "comment Registered" }, { status: 201 });
 }
 export async function GET() {

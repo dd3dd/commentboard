@@ -13,6 +13,10 @@ const comment = new Schema(
         img: {
             type: String,
             require: true,
+        },
+        name: {
+            type: String,
+            require: true,
         }
     },
     { timestamps: true }
