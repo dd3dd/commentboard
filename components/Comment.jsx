@@ -65,6 +65,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
                 src={imgSrc}
                 width={30}
                 height={30}
+                alt='profile'
             />
 
             <div className="w-24">

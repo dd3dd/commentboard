@@ -16,6 +16,7 @@ export default function Navbar() {
             src={session?.user?.image}
             width={30}
             height={30}
+            alt='profile'
           />
           <span className="ml-4">
             {session?.user?.email}
