@@ -6,7 +6,7 @@ import AddComment from "./AddComment";
 const show = async () => {
     try {
         // console.log(session.user.image)
-        const res = await fetch(`http://localhost:3000/api/comment`, {
+        const res = await fetch(process.env.URL + '/api/comment', {
             cache: "no-store",
         });
 
@@ -25,7 +25,6 @@ const show = async () => {
 
 export default async function ShowComment() {
     const { comment } = await show();
-    console.log(comment)
     // const { status, data: session } = useSession();
     // const [myComment, setMyComment] = useState([]);
 

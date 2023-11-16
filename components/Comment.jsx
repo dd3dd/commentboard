@@ -17,7 +17,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const handleDelete = async () => {
         const confirmed = confirm("確定要刪除?");
         if (confirmed) {
-            const res = await fetch(`http://localhost:3000/api/comment?id=${id}`, {
+            const res = await fetch(`${process.env.URL}/api/comment?id=${id}`, {
                 method: "DELETE",
             });
 
@@ -30,7 +30,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:3000/api/comment?id=${id}`, {
+            const res = await fetch(`${process.env.URL}/api/comment?id=${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",
@@ -57,7 +57,6 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
         setIsEdit(0);
         setNewComment(comment);
     }
-
     return (
         <div className="relative h-12 flex justify-start items-center shadow-md my-4">
             <Image

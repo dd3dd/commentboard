@@ -11,7 +11,7 @@ export default function AddComment() {
 
         if (comment !== '') {
             try {
-                const res = await fetch("http://localhost:3000/api/comment", {
+                const res = await fetch(`${process.env.URL}/api/comment`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json",
