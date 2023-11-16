@@ -19,3 +19,10 @@ export async function DELETE(request) {
     await Comment.findByIdAndDelete(id);
     return NextResponse.json({ message: "Comment deleted" }, { status: 200 });
 }
+export async function PUT(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    const { email, newComment: comment, img, name } = await request.json();
+    await connectMongoDB();
+    await Comment.findByIdAndUpdate(id, { email, comment, img, name });
+    return NextResponse.json({ message: "Comment updated" }, { status: 200 });
+}

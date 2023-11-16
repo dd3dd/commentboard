@@ -26,7 +26,6 @@ export default function AddComment() {
 
                 if (res.ok) {
                     setComment('')
-                    alert('success!!')
                     router.refresh();
 
                 } else {
@@ -45,7 +44,7 @@ export default function AddComment() {
                     <div className="w-full flex shadow-md">
                         <input onChange={e => setComment(e.target.value)}
                             value={comment} className='p-2 w-full h-full' type="text" />
-                        <button type="submit" >a</button>
+                        {/* <button type="submit" >a</button> */}
                     </div>
                 </form>}
         </>
