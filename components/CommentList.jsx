@@ -6,7 +6,7 @@ import AddComment from "./AddComment";
 const show = async () => {
     try {
         // console.log(session.user.image)
-        const res = await fetch(process.env.URL + '/api/comment', {
+        const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/comment', {
             cache: "no-store",
         });
 
