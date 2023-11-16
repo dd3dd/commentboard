@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import axios from "axios";
 export default function AddComment() {
     const { status, data: session } = useSession();
     const [comment, setComment] = useState('');
@@ -11,26 +12,20 @@ export default function AddComment() {
 
         if (comment !== '') {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/comment`, {
-                    method: "POST",
+                const requestData = {
+                    email: session.user.email,
+                    comment: comment,
+                    img: session.user.image,
+                    name: session.user.name,
+                };
+                await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/comment`, requestData, {
                     headers: {
-                        "Content-type": "application/json",
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        email: session.user.email,
-                        comment: comment,
-                        img: session.user.image,
-                        name: session.user.name
-                    }),
-                });
+                })
+                setComment('')
+                router.refresh();
 
-                if (res.ok) {
-                    setComment('')
-                    router.refresh();
-
-                } else {
-                    throw new Error("Failed to create a topic");
-                }
             } catch (error) {
                 console.log(error);
             }

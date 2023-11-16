@@ -7,6 +7,7 @@ import { FaCheck } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 export default function Comment({ id = '', email = '', imgSrc = '', comment = '', name = '' }) {
     const { status, data: session } = useSession();
@@ -15,38 +16,34 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const router = useRouter();
 
     const handleDelete = async () => {
+
         const confirmed = confirm("確定要刪除?");
         if (confirmed) {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`, {
-                method: "DELETE",
-            });
-
-            if (res.ok) {
+            try {
+                await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`);
                 router.refresh();
+            } catch (error) {
+                console.log(error);
             }
+
         }
 
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`, {
-                method: "PUT",
+            await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`, {
+                newComment: newComment,
+            }, {
                 headers: {
-                    "Content-type": "application/json",
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ newComment }),
             });
-
-            if (!res.ok) {
-                throw new Error("Failed to update topic");
-            }
             setIsEdit(0);
-
             router.refresh();
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
     const handleEdit = () => {
@@ -57,6 +54,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
         setIsEdit(0);
         setNewComment(comment);
     }
+    // console.log(process.env.NEXT_PUBLIC_URL)
     return (
         <div className="relative h-12 flex justify-start items-center shadow-md my-4">
             <Image

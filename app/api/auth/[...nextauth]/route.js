@@ -2,6 +2,7 @@ import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import axios from "axios";
 
 const authOptions = {
   providers: [
@@ -19,23 +20,18 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/user', {
-              method: "POST",
+            await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
+              name,
+              email,
+            }, {
               headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
               },
-              body: JSON.stringify({
-                name,
-                email,
-              }),
             });
-
-            if (res.ok) {
-              return user;
-            }
+            return user;
           }
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       }
 

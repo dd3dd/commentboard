@@ -1,25 +1,17 @@
-// 'use client';
-// import { useSession } from "next-auth/react";
-// import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import axios from "axios";
 const show = async () => {
     try {
-        // console.log(session.user.image)
-        const res = await fetch(process.env.NEXT_PUBLIC_URL + '/api/comment', {
-            cache: "no-store",
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/comment`, {
+            headers: {
+                'Cache-Control': 'no-store',
+            },
         });
-
-        if (!res.ok) {
-            throw new Error("Failed to fetch topics");
-        }
-        return res.json();
-        // const { comment } = await res.json();
-        // console.log(comment)
-        // setMyComment(comment);
+        return response.data;
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
 
