@@ -37,7 +37,7 @@ export default async function ShowComment() {
     return (
         <div className="mt-12 h-80">
             {comment.map(e =>
-                <Comment id={e._id} email={e.email} imgSrc={e.img} comment={e.comment} name={e.name} />
+                <Comment key={e._id} id={e._id} email={e.email} imgSrc={e.img} comment={e.comment} name={e.name} />
             )}
             <AddComment />
         </div>
