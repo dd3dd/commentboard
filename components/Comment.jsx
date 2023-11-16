@@ -16,34 +16,34 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const router = useRouter();
 
     const handleDelete = async () => {
-
         const confirmed = confirm("確定要刪除?");
         if (confirmed) {
-            try {
-                await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
+                method: "DELETE",
+            });
+
+            if (res.ok) {
                 router.refresh();
-            } catch (error) {
-                console.log(error);
             }
-
         }
-
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
-                newComment: newComment,
-            }, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
+                method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-type": "application/json",
                 },
+                body: JSON.stringify({ newComment }),
             });
+            if (!res.ok) {
+                throw new Error("Failed to update topic");
+            }
             setIsEdit(0);
             router.refresh();
-
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     }
     const handleEdit = () => {

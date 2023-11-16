@@ -12,20 +12,24 @@ export default function AddComment() {
 
         if (comment !== '') {
             try {
-                const requestData = {
-                    email: session.user.email,
-                    comment: comment,
-                    img: session.user.image,
-                    name: session.user.name,
-                };
-                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/comment`, requestData, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comment`, {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-type": "application/json",
                     },
-                })
-                setComment('')
-                router.refresh();
-
+                    body: JSON.stringify({
+                        email: session.user.email,
+                        comment: comment,
+                        img: session.user.image,
+                        name: session.user.name
+                    }),
+                });
+                if (res.ok) {
+                    setComment('')
+                    router.refresh();
+                } else {
+                    throw new Error("Failed to create a topic");
+                }
             } catch (error) {
                 console.log(error);
             }

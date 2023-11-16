@@ -20,15 +20,19 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-              name,
-              email,
-            }, {
+            const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/user', {
+              method: "POST",
               headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
               },
+              body: JSON.stringify({
+                name,
+                email,
+              }),
             });
-            return user;
+            if (res.ok) {
+              return user;
+            }
           }
         } catch (error) {
           console.error(error);
