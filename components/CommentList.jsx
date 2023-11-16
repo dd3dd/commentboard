@@ -3,7 +3,7 @@ import AddComment from "./AddComment";
 import axios from "axios";
 const show = async () => {
     try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/comment`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/comment`, {
             headers: {
                 'Cache-Control': 'no-store',
             },

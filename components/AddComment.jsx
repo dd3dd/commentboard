@@ -18,7 +18,7 @@ export default function AddComment() {
                     img: session.user.image,
                     name: session.user.name,
                 };
-                await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/comment`, requestData, {
+                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/comment`, requestData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },

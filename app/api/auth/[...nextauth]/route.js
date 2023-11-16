@@ -20,7 +20,7 @@ const authOptions = {
           const userExists = await User.findOne({ email });
 
           if (!userExists) {
-            await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
               name,
               email,
             }, {

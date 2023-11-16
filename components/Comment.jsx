@@ -20,7 +20,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
         const confirmed = confirm("確定要刪除?");
         if (confirmed) {
             try {
-                await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`);
+                await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`);
                 router.refresh();
             } catch (error) {
                 console.log(error);
@@ -32,7 +32,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/comment?id=${id}`, {
+            await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
                 newComment: newComment,
             }, {
                 headers: {
