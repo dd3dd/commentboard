@@ -40,8 +40,8 @@ export default function AddComment() {
     return (
         <>
             {status === 'authenticated' &&
-                <form onSubmit={handleSubmit} className='flex' action="">
-                    <div className="w-full flex shadow-md">
+                <form onSubmit={handleSubmit} className='flex ' action="">
+                    <div className="w-full flex shadow-md mb-4">
                         <input onChange={e => setComment(e.target.value)}
                             value={comment} className='p-2 w-full h-full' type="text" />
                         {/* <button type="submit" >a</button> */}
