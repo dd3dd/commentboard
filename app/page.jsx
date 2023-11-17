@@ -5,8 +5,8 @@ export default function Home() {
 
   return (
     <>
-      <UserInfo />
-      <CommentList />
+      {/* <UserInfo />
+      <CommentList /> */}
     </>
   );
 }
