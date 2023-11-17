@@ -18,7 +18,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const handleDelete = async () => {
         const confirmed = confirm("確定要刪除?");
         if (confirmed) {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
+            const res = await fetch(`/api/comment?id=${id}`, {
                 method: "DELETE",
             });
 
@@ -30,7 +30,7 @@ export default function Comment({ id = '', email = '', imgSrc = '', comment = ''
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comment?id=${id}`, {
+            const res = await fetch(`/api/comment?id=${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",
