@@ -7,7 +7,6 @@ import { FaCheck } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import axios from "axios";
 
 export default function Comment({ id = '', email = '', imgSrc = '', comment = '', name = '' }) {
     const { status, data: session } = useSession();

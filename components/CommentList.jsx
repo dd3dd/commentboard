@@ -1,6 +1,5 @@
 import Comment from "./Comment";
 import AddComment from "./AddComment";
-import axios from "axios";
 const show = async () => {
     try {
         // console.log(session.user.image)

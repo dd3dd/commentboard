@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
 export default function AddComment() {
     const { status, data: session } = useSession();
     const [comment, setComment] = useState('');
