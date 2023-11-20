@@ -1,12 +1,15 @@
 "use client";
-
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
 export default function SignInBtn() {
+  const router = useRouter();
+  const signInEvt = () => {
+    signIn("google");
+  }
   return (
     <button
-      onClick={() => signIn("google")}
+      onClick={signInEvt}
       className="flex items-center gap-4 shadow-xl rounded-lg pl-3"
     >
       <Image src="/google-logo.png" height={30} width={30} alt='googleLogo' />

@@ -1,4 +1,6 @@
+import PostCommentList from "@/components/PostCommentList";
 import PostContent from "@/components/PostContent";
+
 const getPostById = async (id) => {
     try {
         const res = await fetch(`http://localhost:3000/api/post/${id}`, {
@@ -23,6 +25,7 @@ export default async function Page({ params }) {
     return (
         <div>
             <PostContent content={content} name={name} img={img} email={email} title={title} id={id} />
+            <PostCommentList id={id} email={email} />
         </div>
     );
 }

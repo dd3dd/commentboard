@@ -1,4 +1,6 @@
 import Post from "@/components/Post";
+import { IoMdAdd } from "react-icons/io";
+import Link from "next/link";
 const show = async () => {
     try {
         // console.log(session.user.image)
@@ -18,7 +20,10 @@ const show = async () => {
 export default async function Page() {
     const { post } = await show();
     return (
-        <div className="flex flex-col">
+        <div className="relative flex flex-col">
+            <Link className='absolute top-4 right-0' href={`/addpost`}>
+                <IoMdAdd size={40} />
+            </Link>
             {post.map(e =>
                 <Post key={e._id} id={e._id} email={e.email} name={e.name} img={e.img} title={e.title} content={e.content} />
             )}

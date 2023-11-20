@@ -1,9 +1,14 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import SignInBtn from "./SignInBtn";
 
 export default function Navbar() {
+  const router = useRouter();
+  const signOutEvt = () => {
+    signOut();
+  }
   const { status, data: session } = useSession();
   return (
     <div className="p-4 flex justify-between items-center shadow-md">
@@ -25,11 +30,14 @@ export default function Navbar() {
       }
       {status === "authenticated" && (
         <button
-          onClick={() => signOut()}
+          onClick={signOutEvt}
           className="bg-slate-900 text-white px-6 py-2 rounded-md"
         >
           登出
         </button>
+      )}
+      {status === "unauthenticated" && (
+        <SignInBtn />
       )}
     </div>
   );

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
+import PostCommentList from "./PostCommentList";
 
 export default function PostContent({ name = '', img = '', email = '', title = '', content = '', id = '' }) {
     const { status, data: session } = useSession();
@@ -113,8 +114,7 @@ export default function PostContent({ name = '', img = '', email = '', title = '
                 )}
 
             </div>
-
-
+            {/* <PostCommentList id={id} email={email} /> */}
         </div>
     )
 }
