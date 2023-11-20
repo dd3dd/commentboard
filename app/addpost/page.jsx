@@ -27,7 +27,8 @@ export default function Page() {
                     email: session.user.email,
                     title: title,
                     content: postContent,
-                    img: session.user.image
+                    img: session.user.image,
+                    name: session.user.name
                 }),
             });
 

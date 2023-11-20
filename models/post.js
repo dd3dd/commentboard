@@ -17,6 +17,10 @@ const post = new Schema(
         img: {
             type: String,
             required: true,
+        },
+        name: {
+            type: String,
+            required: true,
         }
 
     },
