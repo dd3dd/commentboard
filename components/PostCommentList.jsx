@@ -11,9 +11,6 @@ const show = async (id) => {
             throw new Error("Failed to fetch topics");
         }
         return res.json();
-        // const { comment } = await res.json();
-        // console.log(comment)
-        // setMyComment(comment);
     } catch (error) {
         console.log(error);
     }

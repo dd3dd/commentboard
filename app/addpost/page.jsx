@@ -36,7 +36,7 @@ export default function Page() {
             });
 
             if (res.ok) {
-                router.push('/post')
+                router.push('/')
                 router.refresh();
             } else {
                 throw new Error("Failed to create a topic");
@@ -70,7 +70,7 @@ export default function Page() {
                         </button>
                     </form>
                     <Link className="bg-red-600  font-bold text-white py-3 px-6 w-fit"
-                        href={`/post`}>
+                        href={`/`}>
                         取消
                     </Link>
                 </>

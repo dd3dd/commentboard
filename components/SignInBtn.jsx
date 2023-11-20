@@ -1,9 +1,7 @@
 "use client";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 export default function SignInBtn() {
-  const router = useRouter();
   const signInEvt = () => {
     signIn("google");
   }

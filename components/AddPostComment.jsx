@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-export default function AddPostComment({ postid = '', email = '' }) {
+export default function AddPostComment({ postid = '' }) {
     const { status, data: session } = useSession();
     const [comment, setComment] = useState('');
     const router = useRouter();

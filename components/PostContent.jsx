@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
-import PostCommentList from "./PostCommentList";
 
 export default function PostContent({ name = '', img = '', email = '', title = '', content = '', id = '' }) {
     const { status, data: session } = useSession();
@@ -37,7 +36,7 @@ export default function PostContent({ name = '', img = '', email = '', title = '
                 throw new Error("Failed to update topic");
             }
             setIsEdit(0);
-            router.push("/post");
+            router.push("/");
             router.refresh();
         } catch (error) {
             console.log(error);
@@ -49,9 +48,12 @@ export default function PostContent({ name = '', img = '', email = '', title = '
             const res = await fetch(`/api/post/${id}`, {
                 method: "DELETE",
             });
+            const deleteComment = await fetch(`/api/postcomment/${id}`, {
+                method: "DELETE",
+            });
 
-            if (res.ok) {
-                router.push("/post");
+            if (deleteComment.ok) {
+                router.push("/");
                 router.refresh();
             }
         }
@@ -112,9 +114,7 @@ export default function PostContent({ name = '', img = '', email = '', title = '
                         </form>
                     </>
                 )}
-
             </div>
-            {/* <PostCommentList id={id} email={email} /> */}
         </div>
     )
 }

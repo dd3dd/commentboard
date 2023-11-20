@@ -3,7 +3,6 @@ import { IoMdAdd } from "react-icons/io";
 import Link from "next/link";
 const show = async () => {
     try {
-        // console.log(session.user.image)
         const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/post', {
             cache: "no-store",
         });
@@ -16,7 +15,6 @@ const show = async () => {
         console.log(error);
     }
 };
-
 export default async function Page() {
     const { post } = await show();
     return (

@@ -8,3 +8,9 @@ export async function GET(request, { params }) {
     const postcomment = await PostComment.find({ postid: id });
     return NextResponse.json({ postcomment }, { status: 200 });
 }
+export async function DELETE(request, { params }) {
+    const { id } = params;
+    await connectMongoDB();
+    await PostComment.deleteMany({ postid: id });
+    return NextResponse.json({ message: "Comment deleted" }, { status: 200 });
+}
